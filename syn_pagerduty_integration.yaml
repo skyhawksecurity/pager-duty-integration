@@ -18,7 +18,7 @@ Parameters:
     Default: '7,8,9,10'
     Description: 'REQUIRED - CWP risk scores which will trigger a PagerDuty alert (comma separated values: 1 through 10)'
     Type: String
-  CNPAccountId:
+  SYNAccountId:
     AllowedPattern: '[0-9]*'
     MinLength: '12'
     MaxLength: '12'
@@ -38,7 +38,7 @@ Resources:
           Effect: Allow
           Principal:
             #AWS: arn:aws:iam::342443945406:root
-            AWS: !Join [ '' , [ 'arn:aws:iam::' , !Ref CNPAccountId , ':root'] ]
+            AWS: !Join [ '' , [ 'arn:aws:iam::' , !Ref SYNAccountId , ':root'] ]
           Resource:
             Ref: InputTopic
           Sid: CwpSnsPolicy
