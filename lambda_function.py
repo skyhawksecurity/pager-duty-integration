@@ -3,12 +3,12 @@
 # *******************************************************************************
 # Name: lambda_function.py
 # Version: v1.1
-# Description: This open source AWS tool consumes the published security findings detected in Radware CWP to then
+# Description: This open source AWS tool consumes the published security findings detected in Skyhawk Security SYN to then
 # trigger an event in the PagerDuty events API. The CWP Findings passed to PagerDuty are determined by the CWP risk
 # score filter within the tool. All other findings are discarded.
 #
 # Author: Matt Ambroziak, mambroziak@github
-# www.radware.com
+# skyhawk.security
 #
 # PIP Packages required:
 #  - pdpyras
@@ -57,7 +57,7 @@ def process_alert(msg):
             print(process_error)
             return {"success": False, "comment": process_error}
 
-        links = [{"href": msg["objectPortalURL"], "text": "Link to event in Radware CWP Portal"}]
+        links = [{"href": msg["objectPortalURL"], "text": "Link to event in Skyhawk Security SYN Portal"}]
 
         payload = {
             "summary": summary,

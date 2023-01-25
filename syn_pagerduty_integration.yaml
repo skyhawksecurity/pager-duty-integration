@@ -23,9 +23,9 @@ Parameters:
     MinLength: '12'
     MaxLength: '12'
     Type: String
-    Description: The automated response Radware account ID to send publish notifications to. specified at the portal under Settings -> Cloud Accounts -> (Automated response) Activate
+    Description: The automated response Skyhawk Security account ID to send publish notifications to. specified at the portal under Settings -> Cloud Accounts -> (Automated response) Activate
     Default: '438643506655'
-    
+
 Resources:
   InputTopic:
     Type: AWS::SNS::Topic
@@ -48,10 +48,10 @@ Resources:
     Type: AWS::SNS::TopicPolicy
   Solution:
     Properties:
-      CodeUri: 
+      CodeUri:
         Bucket: !Join [ '' , [ 'cnp-public-' , !Ref AWS::Region ] ]
           # If deploying CFT manually, replace this join with a string (e.g. "Bucket: my-custom-bucket-name"
-        Key: 'radware_cwp_pagerduty_integration/radware_cwp_pagerduty_integration.zip'
+        Key: 'syn_pagerduty_integration/syn_pagerduty_integration.zip'
         # Key is the name of the zip file which contains lambda_function.py
       Description: 'CWP-Alerts -> SNS -> Lambda -> PagerDuty Events API'
       Environment:
@@ -60,7 +60,7 @@ Resources:
             Ref: PagerDutyIntegrationKey
           pd_event_severity:
             Ref: PagerDutySeverity
-          cwp_score_filter: 
+          cwp_score_filter:
             Ref: CwpScoreFilter
       Events:
         CwpAlerts:
